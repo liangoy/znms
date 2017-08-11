@@ -10,7 +10,7 @@ pt={}
 def n2c(name):
     return list(filter(lambda x:x['name']==name,stock_fun_code))[0]
 
-def _2_stock_info(t):
+def stock_info(t):
     lis=[]
     for i in w2v.name:
         if i in  t:
@@ -19,9 +19,9 @@ def _2_stock_info(t):
         return lis[0]
     else :
         return None
-pt[2]=_2_stock_info
+pt[2]=stock_info
 
-def _3_stock_vs(t):
+def stock_vs(t):
     lis=[]
     for i in w2v.name:
         if i in t:
@@ -30,9 +30,9 @@ def _3_stock_vs(t):
         return lis
     else:
         return None
-pt[3]=_3_stock_vs
+pt[3]=stock_vs
 
-def _4_stock_news(t):
+def stock_news(t):
     lis=[]
     for i in w2v.name:
         if i in t:
@@ -41,9 +41,9 @@ def _4_stock_news(t):
         if '资讯'in t or '新闻' in t:
             return lis[0]
     return None
-pt[4]=_4_stock_news
+pt[4]=stock_news
 
-def _5_stock_stru(t):
+def stock_stru(t):
     lis=[]
     for i in w2v.name:
         if i in t:
@@ -52,9 +52,9 @@ def _5_stock_stru(t):
         if '股权结构'in t or '股东'in t:
             return lis[0]
     return None
-pt[5]=_5_stock_stru
+pt[5]=stock_stru
 
-def _51_stock_mn(t):
+def stock_bsp(t):
     lis=[]
     for i in w2v.name:
         if i in t:
@@ -63,19 +63,19 @@ def _51_stock_mn(t):
         if '买卖点' in t:
             return lis[0]
     return None
-pt[5.1]=_51_stock_mn
+pt[5.1]=stock_bsp
 
-def _6_good_stock(t):
+def good_stock(t):
     if '推荐'in t:
         return 'recommend'
     return None
-pt[6]=_6_good_stock
+pt[6]=good_stock
 
-def _7_total(t):
+def index(t):
     if '大盘' in t:
         return 'index'
     return None
-pt[7]=_7_total
+pt[7]=index
 
 
 '''#######################################'''
@@ -88,7 +88,7 @@ def translate(value):#http://139.196.88.54:6677/?action=fn.translate&value={%22t
     for i in sorted(list(pt.keys()),reverse=1):
         resu=pt[i](text)
         if resu:
-            lis.append([i,resu])
+            lis.append([pt[i].__name__,resu])
     return lis[:top]
 
 
