@@ -1,5 +1,5 @@
 1、
-输入：http://139.196.88.54:6677/?action=fn.translate&value={"text":"工商银行","top":9}
+输入：http://139.196.88.54:6677/?action=fn.translate&value={"text":"工商银行买卖","top":9}
 输出：
 {"data": [["stock_bsp", {"name": "\u5de5\u5546\u94f6\u884c", "code": "601398", "type": "stock"}], ["stock_info", {"name": "\u5de5\u5546\u94f6\u884c", "code": "601398", "type": "stock"}]]}
 解释：返回的列表中的数字代表优先级，数字越大优先级越高
