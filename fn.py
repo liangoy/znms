@@ -92,11 +92,6 @@ def translate(value):#http://139.196.88.54:6677/?action=fn.translate&value={%22t
     return lis[:top]
 
 
-
-
-
-
-
 md= mem_data_client.Client('http://139.196.88.54:1320')
 def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22name%22:%22%E5%B7%A5%E5%95%86%E9%93%B6%E8%A1%8C%22,%22top%22:9}
     code=value.get('code','')
@@ -104,7 +99,8 @@ def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22nam
     name=value.get('name','')
     if code!='':
         name=list(filter(lambda x:x['code']==code,stock_fun_code))[0]['name'] 
-    data=md.get("sorted(var['news'].map(lambda x:[x['score'][r'%s'],x['title'],x['time'],x['url']]),key=lambda x:x[0])[:%s]"%(name,top))['data']
+    #data=md.get("sorted(var['news'].map(lambda x:[x['score'][r'%s'],x['title'],x['time'],x['url']]),key=lambda x:x[0])[:%s]"%(name,top))['data']
+    data=md.get("table['news'].filter(lambda x:r'%s' in x['content']).map(lambda x:[x['score'][r'%s'],x['title'],x['time'],x['url']])[:%s]"%(name,name,top))['data']
     lis=[]
     for i in data:
         d={
@@ -115,4 +111,20 @@ def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22nam
         }
         lis.append(d)
     return lis
+
+def if_none(value):
+    return   good_stock('推荐')  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
        
