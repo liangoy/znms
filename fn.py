@@ -118,7 +118,7 @@ def if_error(value):
         text='主人，您给的资源我展示没有找到'
     else:
         text='主人，您的话太深奥了，我线给您推荐股票吧！'
-    return  [['text':text],[good_stock.__name__, good_stock('推荐')  ]]
+    return  [['text'，text],[good_stock.__name__, good_stock('推荐')  ]]
     
     
     
