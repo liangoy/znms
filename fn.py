@@ -113,7 +113,7 @@ def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22nam
     return lis
 
 def if_error(value):
-    reason=value.get(reason,'')
+    reason=value.get('reason','')
     if reason=='source can not find':
         text='主人，您给的资源我展示没有找到'
     else:
