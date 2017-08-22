@@ -113,7 +113,7 @@ def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22nam
     return lis
 
 def if_none(value):
-    return  [[good_stock.__name__, good_stock('推荐')  ]]
+    return  [['text':'主人，您的话太深奥了，我给您推荐一只股票吧！'],[good_stock.__name__, good_stock('推荐')  ]]
     
     
     
