@@ -115,10 +115,11 @@ def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22nam
 def if_error(value):
     reason=value.get('reason','')
     if reason=='source can not find':
-        text='主人，您给的资源我展示没有找到'
+        text='不好意思哦，您要的资源暂时找不到'
+        return [['text':text]]
     else:
-        text='主人，您的话太深奥了，我线给您推荐股票吧！'
-    return  [['text'，text],[good_stock.__name__, good_stock('推荐')  ]]
+        text='您的话太深奥了，我先给您推荐股票吧！'
+        return  [['text'，text],[good_stock.__name__, good_stock('推荐')  ]]
     
     
     
