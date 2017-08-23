@@ -1,11 +1,11 @@
 # api文档
 
 ## 翻译
-### 输入：*http://139.196.88.54:6677/?action=fn.translate&value={%22text%22:%22%E5%B7%A5%E5%95%86%E9%93%B6%E8%A1%8C%E5%A4%A7%E7%9B%98%22,%22top%22:9}
+### 输入：http://139.196.88.54:6677/?action=fn.translate&value={%22text%22:%22%E5%B7%A5%E5%95%86%E9%93%B6%E8%A1%8C%E5%A4%A7%E7%9B%98%22,%22top%22:9}
 * text：输入的语句
 * top：按照相关性返回的条数，默认为3
 
-###输出：{"data": [["index", "index"], ["stock_info", {"code": "601398", "name": "\u5de5\u5546\u94f6\u884c", "type": "stock"}]]}
+### 输出：{"data": [["index", "index"], ["stock_info", {"code": "601398", "name": "\u5de5\u5546\u94f6\u884c", "type": "stock"}]]}
 ### 解释：返回的列表中的数字代表优先级，数字越大优先级越高
 * stock_info：得到股票的基本信息，例如分钟线等，返回股票名字代码
 * stock_vs：得到两只股票的对比，返回的是两只股票的股票名字代码
@@ -19,7 +19,7 @@
 
 
 ## 相关新闻
-### 输入：*http://139.196.88.54:6677/?action=fn.get_news&value={"name":"工商银行","code":"601398","top":1}
+### 输入：http://139.196.88.54:6677/?action=fn.get_news&value={"name":"工商银行","code":"601398","top":1}
 * name：股票或基金名称
 * code：股票或者基金代码
 *（name和code选择输入一个就可以）
@@ -35,7 +35,7 @@
 * 作用：输入股票或者基金的代码（字符串）或者名字返回若干条相关新闻
 
 ## 错误处理
-### 输入：*http://139.196.88.54:6677/?action=fn.if_error&value={}
+### 输入：http://139.196.88.54:6677/?action=fn.if_error&value={}
 * 参数 reason：出现错误的原因，值'source connot find'表示资源找不到
 ### 输出：
 类似1
