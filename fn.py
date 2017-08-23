@@ -116,7 +116,7 @@ def if_error(value):
     reason=value.get('reason','')
     if reason=='source can not find':
         text='不好意思哦，您要的资源暂时找不到'
-        return [['text':text]]
+        return [['text',text]]
     else:
         text='您的话太深奥了，我先给您推荐股票吧！'
         return  [['text'，text],[good_stock.__name__, good_stock('推荐')  ]]
