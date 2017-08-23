@@ -13,6 +13,15 @@ class W2v():
                 self.name=json.loads(f.read())
         if jieba_dict:
             jieba.load_userdict(jieba_dict)
+    
+    def jieba_loads_stock_fun(self):
+        with open('tmp_jieba_user_dict','w') as f:
+            text=''
+            for i in self.name:
+                text+=(i+' 1000\n')
+            f.write(text)
+        jieba.load_userdict('./tmp_jieba_user_dict')
+    
     def distance(self,w1,w2):
         return np.sqrt(np.sum((self.w2v[w1]-self.w2v[w2])**2))
     def distance_word_rank(self,w,top=7):
