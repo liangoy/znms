@@ -5,15 +5,29 @@ w2v=W2v('./w2v.json')
 with open('./stock_fun_code') as f:stock_fun=json.loads(f.read())
 w2v.name=list(map(lambda x:x['name'],stock_fun))
 w2v.jieba_loads_stock_fun()
+
+
 #precedence_table
+def add_action(fn):
+    def do(*args):
+        r=fn(*args)
+        if type(r)==dict:
+            r['action']=fn.__name__
+            return r
+        else:
+            return {}
+    return do
+
 pt={}
 
 stock_list=list(map(lambda x:x['name'],filter(lambda x:x['type']=='stock' ,stock_fun)))
 fun_list=list(map(lambda x:x['name'],filter(lambda x:x['type']=='fun' ,stock_fun)))
 
+@add_action
 def n2c(name):
     return list(filter(lambda x:x['name']==name,stock_fun))[0]
 
+@add_action
 def stock_fun_info(t):
     lis=list(map(lambda x:n2c(x) ,filter(lambda x:x in t,w2v.name)))
     if len(lis)==1:
@@ -22,6 +36,7 @@ def stock_fun_info(t):
         return None
 pt[2]=stock_fun_info
 
+@add_action
 def stock_vs(t):
     lis=list(map(lambda x:n2c(x)['code'] ,filter(lambda x:x in t,stock_list)))
     if len(lis)>=2:
@@ -30,6 +45,7 @@ def stock_vs(t):
         return None
 pt[3]=stock_vs
 
+@add_action
 def stock_fun_news(t):
     lis=list(map(lambda x:n2c(x) ,filter(lambda x:x in t,w2v.name)))
     if len(lis)==1 and ('资讯'in t or '新闻' in t):
@@ -37,6 +53,7 @@ def stock_fun_news(t):
     return None
 pt[4]=stock_fun_news
 
+@add_action
 def stock_stru(t):
     lis=list(map(lambda x:n2c(x) ,filter(lambda x:x in t,stock_list)))
     if len(lis)==1 and ('股权结构'in t or '股东'in t):
@@ -44,6 +61,7 @@ def stock_stru(t):
     return None
 pt[5]=stock_stru
 
+@add_action
 def stock_bsp(t):
     lis=list(map(lambda x:n2c(x) ,filter(lambda x:x in t,stock_list)))
     if len(lis)==1 and ('买卖点' in t):
@@ -51,12 +69,14 @@ def stock_bsp(t):
     return None
 pt[5.1]=stock_bsp
 
+@add_action
 def good_stock(t):
     if '推荐'in t:
         return {}
     return None
 pt[6]=good_stock
 
+@add_action
 def index(t):
     if '大盘' in t:
         return {}
@@ -70,12 +90,7 @@ pt[7]=index
 def translate(value):#http://139.196.88.54:6677/?action=fn.translate&value={%22text%22:%22%E5%B7%A5%E5%95%86%E9%93%B6%E8%A1%8C%22,%22top%22:9}
     text=value['text']
     top=value.get('top',3)
-    lis=[]
-    for i in sorted(list(pt.keys()),reverse=1):
-        resu=pt[i](text)
-        if resu !=None:
-            resu['action']=pt[i].__name__
-            lis.append(resu)
+    lis=list(filter(lambda x:x!=None,map(lambda x:pt[x](text).copy(),sorted(list(pt.keys()),reverse=1))))
     return lis[:top]
 
 
