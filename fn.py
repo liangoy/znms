@@ -90,7 +90,7 @@ pt[7]=index
 def translate(value):#http://139.196.88.54:6677/?action=fn.translate&value={%22text%22:%22%E5%B7%A5%E5%95%86%E9%93%B6%E8%A1%8C%22,%22top%22:9}
     text=value['text']
     top=value.get('top',3)
-    lis=list(filter(lambda x:x!=None,map(lambda x:pt[x](text).copy(),sorted(list(pt.keys()),reverse=1))))
+    lis=list(filter(lambda x:x,map(lambda x:pt[x](text).copy(),sorted(list(pt.keys()),reverse=1))))
     return lis[:top]
 
 
