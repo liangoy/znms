@@ -1,6 +1,7 @@
 from w2v import W2v
 import json
 import mem_data_client
+import bson
 w2v=W2v('./w2v.json')
 with open('./stock_fun_code') as f:stock_fun=json.loads(f.read())
 w2v.name=list(map(lambda x:x['name'],stock_fun))
@@ -13,6 +14,7 @@ def add_action(fn):
         r=fn(*args)
         if type(r)==dict:
             r['action']=fn.__name__
+            r['_id']=str(bson.objectid.ObjectId())
             return r
         else:
             return {}
