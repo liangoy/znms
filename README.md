@@ -1,12 +1,14 @@
 # api文档
 
 ## 翻译
-### 输入：http://139.196.88.54:6677/?action=fn.translate&value={%22text%22:%22%E5%B7%A5%E5%95%86%E9%93%B6%E8%A1%8C%E5%A4%A7%E7%9B%98%22,%22top%22:9}
+### 输入：http://139.196.88.54:6677/?action=fn.translate&value={"text":"工商银行大盘","top":9,"user":"guest"}
+* user:用于辨别用户身份，默认为guest
 * text：输入的语句
 * top：按照相关性返回的条数，默认为3
 
-### 输出：{"data": [{"action": "index"}, {"code": "601398", "name": "\u5de5\u5546\u94f6\u884c", "type": "stock", "action": "stock_fun_info"}]}
+### 输出：{"data": [{"action": "index", "_id": "59a51bd614565e58c9d35f23"}, {"name": "\u5de5\u5546\u94f6\u884c", "code": "601398", "_id": "59a51bd614565e58c9d35f24", "action": "stock_fun_info", "type": "stock"}]}
 ### 解释：返回的列表中的数字代表优先级，数字越大优先级越高
+* _id：唯一标识符
 * stock_fun_info：得到股票或者基金的基本信息
 * stock_vs：得到两只股票的对比，返回的是两只股票的股票名字代码
 * stock_fun_news：得到股票或者基金的新闻，返回的是股票名字代码
@@ -36,7 +38,7 @@
 * 作用：输入股票或者基金的代码（字符串）或者名字返回若干条相关新闻
 
 ## 错误处理
-### 输入：http://192.168.0.6:6677/?action=fn.if_error&value={"reason":101}
+### 输入：http://192.168.0.6:6677/?action=fn.if_error&value={"reason":101,"user":"guest"}
 * 参数 reason：出现错误的原因.默认值是100
 * 值100：其他错误
 * 值101：找不到相应的资源
