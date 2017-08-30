@@ -125,7 +125,7 @@ def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22nam
     return lis[:top]
 
 def if_error(value):
-    if not value.get('_id','') and value.get('reason',100000)>99:
+    if (not value.get('_id','')) and value.get('reason',100000)>99:
         raise ValueError
     reason=int(value.get('reason',''))
     if reason==101:
