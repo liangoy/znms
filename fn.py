@@ -104,7 +104,7 @@ def translate(value):#http://139.196.88.54:6677/?action=fn.translate&value={%22t
     top=int(value.get('top',3))
     lis=list(filter(lambda x:x,map(lambda x:pt[x](text),sorted(list(pt.keys()),reverse=1))))
     if lis==[]:
-        return if_error({'reason':100})
+        return if_error({'reason':99})
     d=lis[0]
     d.pop('add')
     d['_id']=str(bson.objectid.ObjectId())
@@ -133,11 +133,11 @@ def if_error(value):
         return {'action':'text','text':text,'addition':[]}
     
     elif reason==99:
-        d=index
+        d=index('大盘')
         d.pop('add')
         d['_id']=str(bson.objectid.ObjectId())
         d['addtion']=[]
-    
+        return d
     else:
         text='您的话有点深奥哦，我先给您推荐股票吧！'
         d=good_stock('推荐')
