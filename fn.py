@@ -138,7 +138,7 @@ def if_error(value):
         d['_id']=str(bson.objectid.ObjectId())
         d['addtion']=[]
     
-    elif:
+    else:
         text='您的话有点深奥哦，我先给您推荐股票吧！'
         d=good_stock('推荐')
         d['action']=good_stock.__name__
