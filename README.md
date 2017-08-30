@@ -17,6 +17,7 @@
 * good_stock：想要我们返回推荐的股票代码
 * index：得到大盘行情
 * text：输出text中的文字
+* addition：给用户的附加选项
 
 * 作用：将语句格式化
 
