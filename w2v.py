@@ -14,7 +14,7 @@ class W2v():
         if jieba_dict:
             jieba.load_userdict(jieba_dict)
     
-    def jieba_loads_stock_fun(self):
+    def jieba_loads_stock_fund(self):
         with open('tmp_jieba_user_dict','w') as f:
             text=''
             for i in self.name:
