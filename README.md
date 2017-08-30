@@ -6,12 +6,12 @@
 * text：输入的语句
 * top：按照相关性返回的条数，默认为3
 
-### 输出：{"data": [{"action": "index", "_id": "59a51bd614565e58c9d35f23"}, {"name": "\u5de5\u5546\u94f6\u884c", "code": "601398", "_id": "59a51bd614565e58c9d35f24", "action": "stock_fun_info", "type": "stock"}]}
+### 输出：{"data": [{"action": "index", "_id": "59a51bd614565e58c9d35f23"}, {"name": "\u5de5\u5546\u94f6\u884c", "code": "601398", "_id": "59a51bd614565e58c9d35f24", "action": "stock_fund_info", "type": "stock"}]}
 ### 解释：返回的列表中的数字代表优先级，数字越大优先级越高
 * _id：唯一标识符
-* stock_fun_info：得到股票或者基金的基本信息
+* stock_fund_info：得到股票或者基金的基本信息
 * stock_vs：得到两只股票的对比，返回的是两只股票的股票名字代码
-* stock_fun_news：得到股票或者基金的新闻，返回的是股票名字代码
+* stock_fund_news：得到股票或者基金的新闻，返回的是股票名字代码
 * stock_stru：得到股票的股权结构，返回的是股票名字代码
 * stock_bsp:得到股票的买卖点，返回的是股票名字代码
 * good_stock：想要我们返回推荐的股票代码
@@ -38,7 +38,7 @@
 * 作用：输入股票或者基金的代码（字符串）或者名字返回若干条相关新闻
 
 ## 错误处理
-### 输入：http://192.168.0.6:6677/?action=fn.if_error&value={"reason":101,"user":"guest","_id":"59a518f014565e55f0b07629"}
+### 输入：http://192.168.0.6:6677/?action=fn.if_error&value={"reason":101,"user":"guest"}
 * 参数 reason：出现错误的原因.默认值是100
 * 值100：其他错误
 * 值101：找不到相应的资源
