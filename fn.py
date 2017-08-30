@@ -15,7 +15,6 @@ def add_action(fn):
         r=fn(*args)
         if type(r)==dict:
             r['action']=fn.__name__
-            r['_id']=str(bson.objectid.ObjectId())
             return r
         else:
             return {}
@@ -28,6 +27,7 @@ fund_list=list(map(lambda x:x['name'],filter(lambda x:x['type']=='fund' ,stock_f
 
 def n2c(name):
     return list(filter(lambda x:x['name']==name,stock_fund))[0]
+
 
 @add_action
 def stock_fund_info(t):
@@ -131,7 +131,14 @@ def if_error(value):
     if reason==101:
         text='不好意思哦，您要的资源暂时找不到'
         return {'action':'text','text':text,'addition':[]}
-    else:
+    
+    elif reason==99：
+        d=index
+        d.pop('add')
+        d['_id']=str(bson.objectid.ObjectId())
+        d['addtion']=[]
+    
+    elif:
         text='您的话有点深奥哦，我先给您推荐股票吧！'
         d=good_stock('推荐')
         d['action']=good_stock.__name__
