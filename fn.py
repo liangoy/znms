@@ -132,7 +132,7 @@ def if_error(value):
         text='不好意思哦，您要的资源暂时找不到'
         return {'action':'text','text':text,'addition':[]}
     
-    elif reason==99：
+    elif reason==99:
         d=index
         d.pop('add')
         d['_id']=str(bson.objectid.ObjectId())
