@@ -126,7 +126,7 @@ def get_news(value):#http://139.196.88.54:6677/?action=fn.get_news&value={%22nam
 
 def if_error(value):
     if not value.get('_id','') and value.get('reason',100000)>99:
-        raise "ERROR:YOU SHOULD POST _id"
+        raise ValueError
     reason=int(value.get('reason',''))
     if reason==101:
         text='不好意思哦，您要的资源暂时找不到'
